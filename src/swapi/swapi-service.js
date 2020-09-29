@@ -1,4 +1,3 @@
-
 const log = require('log4js').getLogger('swapi-service');
 const api = require('./swapi-api');
 const utils = require('../utils/utils');

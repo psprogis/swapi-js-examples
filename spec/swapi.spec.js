@@ -17,8 +17,6 @@ describe('swapi simple test', () => {
     it('should return person and list of films for this person', async () => {
         const person = await api.getProfile({ index: 1 });
 
-        console.log(person);
-
         const filmTitles = await service.extractFilmTitles(person.films);
 
         person.films = filmTitles;
