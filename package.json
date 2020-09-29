@@ -16,6 +16,7 @@
         "eslint": "^7.10.0",
         "eslint-config-airbnb-base": "^14.2.0",
         "eslint-plugin-import": "^2.22.1",
+        "eslint-plugin-jasmine": "^4.1.1",
         "jasmine": "^3.6.1",
         "jasmine-allure-reporter": "^1.0.2",
         "jasmine-spec-reporter": "^6.0.0",

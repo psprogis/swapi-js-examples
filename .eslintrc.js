@@ -1,5 +1,5 @@
 module.exports = {
-    "extends": "airbnb-base",
+    extends: 'airbnb-base',
 
     globals: {
         allure: true,
@@ -7,17 +7,21 @@ module.exports = {
 
     env: {
         jasmine: true,
-        es6: true,
-        node: true
+        es2020: true,
+        node: true,
     },
 
     rules: {
         indent: ['error', 4],
-        'max-len': ['error', { 'code': 120 }],
+        'max-len': ['error', { code: 120 }],
         'padded-blocks': 'off',
         'class-methods-use-this': 'off',
         'no-continue': 'off',
         'no-use-before-define': 'off',
-        'arrow-parens': 'off'
-    }
+        'arrow-parens': 'off',
+    },
+
+    plugins: [
+        'jasmine',
+    ],
 };
