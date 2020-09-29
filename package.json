@@ -1,0 +1,25 @@
+{
+    "name": "swapi-js-examples",
+    "version": "1.0.0",
+    "description": "test task for swapi",
+    "author": "Pavlo Sprogis <pavel.sprogis@gmail.com>",
+    "license": "ISC",
+    "scripts": {
+        "test": "npm run cleanup && node ./run-tests.js",
+        "cleanup": "rimraf allure-results allure-report",
+        "report": "allure generate && allure open",
+        "lint": "eslint ."
+    },
+    "dependencies": {
+        "allure-commandline": "^2.13.0",
+        "axios": "^0.20.0",
+        "eslint": "^7.10.0",
+        "eslint-config-airbnb-base": "^14.2.0",
+        "eslint-plugin-import": "^2.22.1",
+        "jasmine": "^3.6.1",
+        "jasmine-allure-reporter": "^1.0.2",
+        "jasmine-spec-reporter": "^6.0.0",
+        "log4js": "^6.3.0",
+        "rimraf": "^3.0.2"
+    }
+}
