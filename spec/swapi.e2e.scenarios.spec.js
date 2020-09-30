@@ -27,4 +27,23 @@ describe('swapi simple test', () => {
         expect(person).toEqual(lukeWithFilms, 'got wrong person response.');
 
     }, 30000); // swapi is slow, so let's wait more
+
+    it('should find person by id, his homeworld and first film', async () => {
+        const person = await api.getProfile({ index: 1 });
+
+        expect(person.name).toBe('Luke Skywalker');
+        expect(person.homeworld).toMatch(/http:.*/, 'got wrong homeworld url');
+
+        const planet = await api.getUrl({ url: person.homeworld });
+
+        expect(planet.name).toBe('Tatooine', 'got wrong planet name');
+        expect(planet.population).toBe('200000', 'got wrong population');
+
+        const firstFilm = await api.getUrl({ url: planet.films[0] });
+        log.info(firstFilm);
+
+        expect(firstFilm.title).toBe('A New Hope');
+        // TODO: check characters
+        expect(firstFilm.planets).toContain(person.homeworld);
+    });
 });
