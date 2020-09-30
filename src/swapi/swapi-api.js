@@ -50,7 +50,7 @@ async function fetchItemByName({ collection, name }) {
     }
 
     if (items.length > 1) {
-        console.warn(`Collection ${collection}, more than one item found, return the first one.`);
+        log.warn(`Collection ${collection}, more than one item found, return the first one.`);
     }
 
     return items[0];
