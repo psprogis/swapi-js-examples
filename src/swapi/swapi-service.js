@@ -9,7 +9,7 @@ async function extractFilmTitles(filmsUrls) {
 
     const films = await Promise.all(
         filmsUrls
-            .map(utils.getIndexFromUrl)
+            .map(utils.getIndexFromSwapiUrl)
             .map(index => api.getFilm({ index })),
     );
 
