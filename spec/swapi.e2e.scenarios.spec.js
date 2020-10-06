@@ -1,20 +1,20 @@
-/*
- * Create a test, which will verify the following data using REST Api:
- * - given a base url: https://swapi.co/
- * - get a resource: /people/1/
- * - change all links in “films” array with actual movie titles
- * - assert that received result (whole character data containing substituted films data) equals to the expected data
-*/
-
 const log = require('log4js').getLogger('spec-logger');
 const api = require('../src/swapi/swapi-api');
 const service = require('../src/swapi/swapi-service');
 const testData = require('../test-data/persons');
 
-const { lukeWithFilms } = testData;
+describe('swapi simple tests', () => {
 
-describe('swapi simple test', () => {
+    /*
+     * Create a test, which will verify the following data using REST Api:
+     * - given a base url: https://swapi.co/
+     * - get a resource: /people/1/
+     * - change all links in “films” array with actual movie titles
+     * - assert that received result (whole character data containing substituted films data)
+     *   equals to the expected data
+    */
     it('should return person and list of films for this person', async () => {
+        const { lukeWithFilms } = testData;
         const person = await api.getProfile({ index: 1 });
 
         const filmTitles = await service.extractFilmTitles(person.films);
@@ -43,7 +43,7 @@ describe('swapi simple test', () => {
         log.info(firstFilm);
 
         expect(firstFilm.title).toBe('A New Hope');
-        // TODO: check characters
+        expect(firstFilm.characters).toContain(person.url);
         expect(firstFilm.planets).toContain(person.homeworld);
     });
 });
