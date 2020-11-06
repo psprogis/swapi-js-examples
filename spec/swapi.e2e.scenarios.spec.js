@@ -48,14 +48,45 @@ describe('swapi simple tests', () => {
     });
 
     it('should get pilots on Millennium Falcon', async () => {
-        const pilots = await getPilots('Millennium Falcon');
+        const pilots = await api.getPilots('Millennium Falcon');
 
         expect(pilots).toEqual(['Chewbacca', 'Han Solo', 'Lando Calrissian', 'Nien Nunb']);
     });
 
     it('should return empty array for Death Star', async () => {
-        const pilots = await getPilots('Death Star');
+        const pilots = await api.getPilots('Death Star');
 
         expect(pilots).toEqual([]);
+    });
+
+    describe('get climate', () => {
+        const expectedPlanets = [
+            {
+                name: 'Yavin IV',
+                climate: 'temperate, tropical',
+            },
+            {
+                name: 'Dagobah',
+                climate: 'murky',
+            },
+            {
+                name: 'Naboo',
+                climate: 'temperate',
+            },
+        ];
+
+        expectedPlanets.forEach(planet => {
+            it(`should get climate on ${planet.name}`, async () => {
+                expect(await api.getClimate(planet.name)).toBe(planet.climate);
+            });
+        });
+
+        it('should throw error for unknown planet - swapi returns empty array', async () => {
+            try {
+                await api.getClimate('Earth');
+            } catch (e) {
+                expect(e.message).toMatch(/no items found by name: Earth/);
+            }
+        });
     });
 });
