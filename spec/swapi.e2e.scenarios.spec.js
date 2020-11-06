@@ -46,4 +46,16 @@ describe('swapi simple tests', () => {
         expect(firstFilm.characters).toContain(person.url);
         expect(firstFilm.planets).toContain(person.homeworld);
     });
+
+    it('should get pilots on Millennium Falcon', async () => {
+        const pilots = await getPilots('Millennium Falcon');
+
+        expect(pilots).toEqual(['Chewbacca', 'Han Solo', 'Lando Calrissian', 'Nien Nunb']);
+    });
+
+    it('should return empty array for Death Star', async () => {
+        const pilots = await getPilots('Death Star');
+
+        expect(pilots).toEqual([]);
+    });
 });
